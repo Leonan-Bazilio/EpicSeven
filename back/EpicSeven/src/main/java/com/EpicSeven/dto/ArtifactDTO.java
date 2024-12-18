@@ -3,6 +3,8 @@ package com.EpicSeven.dto;
 import com.EpicSeven.entity.Artifact;
 import com.EpicSeven.entity.ArtifactAttributesLevel;
 
+import java.time.LocalDate;
+
 public class ArtifactDTO {
     
     
@@ -12,6 +14,7 @@ public class ArtifactDTO {
     private byte rarityStars;
     private String background;
     private String imageUrl;
+    private LocalDate releaseDate;
     
     
     
@@ -24,16 +27,20 @@ public class ArtifactDTO {
     public ArtifactDTO(Artifact artifact, ArtifactAttributesLevel attributesLevel, String language) {
         this.setIdArtifact(artifact.getId());
         this.setRarityStars(artifact.getRarityStars());
+        this.setReleaseDate(artifact.getReleaseDate());
         this.setImageUrl( artifact.getImageUrl());
         this.setLevel( attributesLevel.getLevel());
         this.setAttackBonus( attributesLevel.getAttackBonus());
         this.setHealthBonus( attributesLevel.getHealthBonus());
         
+        
+        
+        
 
         if (language.equals("pt")) {
             this.setName( artifact.getNamePt());
             this.setRestriction( artifact.getRestriction().getValuePortuguese());
-            this.description = attributesLevel.getDescriptionPt();
+            this.setDescription( attributesLevel.getDescriptionPt());
             this.setBackground(artifact.getBackgroundPt());
         } else {
             this.setName( artifact.getNameEn());
@@ -81,6 +88,14 @@ public class ArtifactDTO {
     
     public void setIdArtifact(int idArtifact) {
         this.idArtifact = idArtifact;
+    }
+    
+    public String getReleaseDate() {
+        return releaseDate.toString();
+    }
+    
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = LocalDate.parse(releaseDate);
     }
     
     public String getImageUrl() {

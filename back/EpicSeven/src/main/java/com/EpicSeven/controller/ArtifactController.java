@@ -27,6 +27,11 @@ public class ArtifactController {
         List<ArtifactDTO> artifactDTOList = artifactService.getAllArtifacts(lang);
         return ResponseEntity.ok(artifactDTOList);
     }
+    @GetMapping("/full")
+    public ResponseEntity<List<Artifact>> getAllArtifactsFull(){
+        List<Artifact> artifactList = artifactService.getAllArtifactsFull();
+        return ResponseEntity.ok(artifactList);
+    }
     
     @GetMapping("/{artifactId}")
     public ResponseEntity<ArtifactDTO> getArtifactById(

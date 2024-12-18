@@ -3,6 +3,9 @@ package com.EpicSeven.entity;
 import com.EpicSeven.enums.CharacterClass;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.util.List;
+
 
 @Entity
 @Table(name = "tb_artifact")
@@ -34,6 +37,12 @@ public class Artifact {
     
     @Column(name = "image_url")
     private String imageUrl;
+    
+    @Column(name = "release_date", nullable = false)
+    private LocalDate releaseDate;
+    
+    @OneToMany(mappedBy = "artifact", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<ArtifactAttributesLevel> attributesLevels;
     
     
     
@@ -100,5 +109,19 @@ public class Artifact {
         this.restriction = restriction;
     }
     
+    public String getReleaseDate() {
+        return releaseDate.toString();
+    }
     
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = LocalDate.parse(releaseDate);
+    }
+    
+    public List<ArtifactAttributesLevel> getAttributesLevels() {
+        return attributesLevels;
+    }
+    
+    public void setAttributesLevels(List<ArtifactAttributesLevel> attributesLevels) {
+        this.attributesLevels = attributesLevels;
+    }
 }

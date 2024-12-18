@@ -32,7 +32,10 @@ public class ArtifactService {
         }
         return artifactDTOList;
     }
-    
+    public List<Artifact> getAllArtifactsFull(){
+        
+        return artifactRepository.findAll();
+    }
     
     public ArtifactDTO getArtifactById(int artifactId, int level, String lang) {
         

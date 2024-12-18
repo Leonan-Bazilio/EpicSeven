@@ -1,5 +1,6 @@
 package com.EpicSeven.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -26,7 +27,8 @@ public class ArtifactAttributesLevel {
     private String descriptionEn;
     
     @ManyToOne
-    @JoinColumn(name = "fk_artifact_id", referencedColumnName = "id_artifact")
+    @JoinColumn(name = "fk_artifact_id", nullable = false)
+    @JsonIgnore
     private Artifact artifact;
     
     public int getLevel() {
